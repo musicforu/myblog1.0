@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head lang='zh-CN'>
+    <title>博客</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <script type="text/javascript" src='/javascripts/angular-1.3.0.js'>
+    </script>
+    <script src='/javascripts/jquery-2.1.4.js'></script>  
+    <script src='/javascripts/ng-file-upload-shim.min.js'></script>
+    <script src='/javascripts/ng-file-upload.min.js'></script>   
+    <script src='/javascripts/angular-route.min.js'></script>            
+    <script src='/javascripts/myApp.js'></script>
+    <script src='/javascripts/myCtrls.js'></script>
+    <script src='/javascripts/myDirectives.js'></script>
+    <script src='/javascripts/myServices.js'></script>
+    <script type="text/javascript" src='/javascripts/bootstrap.js'>
+    </script>
+  </head>
+  <body ng-app='myApp'>
+      <h1 class='text-right'>世界在我们脚下</h1>
+      <h3 class="text-right">我自己的博客</h3>                        
+      <div ng-view ng-controller='mainCtrl'>
+      
+      </div>      
+  </body>
+</html>

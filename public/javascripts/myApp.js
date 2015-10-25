@@ -1,0 +1,108 @@
+var myApp=angular.module('myApp',['ngRoute','myCtrls','myServices','myDirectives','ngFileUpload'])
+  
+myApp.config(['$routeProvider',function($routeProvider){
+	$routeProvider
+	  //主页
+	  .when('/',{
+	  	templateUrl:'/tpls/list.html',
+	  	controller:'postListCtrl'
+	  })
+	  //主页
+	  .when('/list',{
+	  	templateUrl:'/tpls/list.html',
+	  	controller:'postListCtrl'
+	  })
+	  //上传用户头像
+	  .when('/photo',{
+	  	templateUrl:'/tpls/photo.html',
+	  	controller:'photoCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //查看指定文章
+	  .when('/postId/:id',{
+	  	templateUrl:'/tpls/view.html',
+	  	controller:'postViewCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //查看指定用户的所有文章
+	  .when('/postName/:name',{
+	  	templateUrl:'/tpls/listUser.html',
+	  	controller:'postListUserCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //查看指定标签的所有文章
+	  .when('/tag/:tagName',{
+	  	templateUrl:'/tpls/tag.html',
+	  	controller:'postTagCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //注册页
+	  .when('/register',{
+	  	templateUrl:'/tpls/register.html',
+	  	controller:'userCtrl'
+	  })
+	  //登录页
+	  .when('/login',{
+	  	templateUrl:'/tpls/login.html',
+	  	controller:'userCtrl'
+	  })
+	  //发表文章页面
+	  .when('/post',{
+	  	templateUrl:'/tpls/post.html',
+	  	controller:'postCreateCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //登出页
+	  .when('/logout',{
+	  	templateUrl:'/tpls/logout.html',
+	  	controller:'userCtrl'
+	  })
+	  //系统管理员页面
+	  .when('/adminEdit',{
+	  	templateUrl:'/tpls/admin.post.list.html',
+	  	controller:'adminPostListCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //编辑更新文章页面
+	  .when('/edit/:id',{
+	  	templateUrl:'/tpls/edit.html',
+	  	controller:'postEditCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //按照文章标题进行搜索
+	  .when('/search',{
+	  	templateUrl:'/tpls/search.html',
+	  	controller:'searchCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //列出所有标签的页面
+	  .when('/tags',{
+	  	templateUrl:'/tpls/tags.html',
+	  	controller:'tagCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //用户自己的页面
+	  .when('/mine',{
+	  	templateUrl:'/tpls/mine.html',
+	  	controller:'mineCtrl',
+	  	access:{requiredAuthentication:true}
+	  })
+	  //其他路由转向主页
+	  .otherwise({
+	  	redirectTo:'/'
+	  })
+}])
+
+//为路由添加拦截器
+myApp.config(function($httpProvider){
+	$httpProvider.interceptors.push('tokenInterceptor');
+})
+//如果未经登陆的用户想要查看带有权限认证的页面则转向登录页
+myApp.run(function($rootScope,$window,$location,authentication){
+	$rootScope.$on('$routeChangeStart',function(event,nextRoute,currentRoute){
+		if(nextRoute!=null && nextRoute.access!=null && nextRoute.access.requiredAuthentication
+			&& !authentication.isAuthenticated && !$window.sessionStorage.token){
+			$location.path('/login');
+		}
+	})
+})

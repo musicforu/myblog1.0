@@ -1,0 +1,50 @@
+<div class="theme"> 
+  <h2>主页</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article class='article'>
+	<!-- 显示是否转载成功，如果没有转载则隐藏 -->
+    <span ng-if='reprint'>{{reprint}}</span>
+    <!-- 显示是否登陆成功，如果没有登陆则隐藏 -->
+    <span ng-if='isLogged'>{{isLogged}}</span>
+    <!-- 显示是否发表文章成功，如果没有发表文章则隐藏 -->
+    <span ng-if='postSuccess'>{{postSuccess}}</span>
+    <!-- 显示是否登出成功，如果没有登出则隐藏 -->
+    <span ng-if='isLogouted'>{{isLogouted}}</span>
+    <!-- 列出所有文章 -->
+	<section ng-repeat='post in posts track by $index'>
+		<header>
+			<h2><a href='#/postId/{{post._id}}'>{{ post.title }}</a></h2>
+			<img ng-src='/images/{{post.name}}.png' class='userHeader'>
+			<div>{{post.name}} 发表于：<i class='fa fa-bullseye'>{{ post.created | date:'medium'}}</i></div>
+			<div>被赞：<i class='fa fa-thumbs-up'></i>{{ post.likes}}次</div>
+			<div>
+			    <ul class='list-inline'>
+			        <i class='fa fa-tags'></i>
+				    <li ng-repeat='tag in post.tags track by $index'>
+				        <a class='label label-success' href='#/tag/{{tag}}'>{{ tag }}</a>	
+				    </li>
+			    </ul>
+			</div>
+		</header>
+		<div>
+			<p ng-bind-html='post.content'>	</p>
+			<a href='#/postName/{{post.name}}' class='btn btn-primary'>获取更多此用户文章</a>
+		</div>
+	</section>
+	<!-- 显示是否到第一页-->
+	<div ng-if='left_end'>{{left_end}}</div>
+	<!-- 显示是否到最后一页-->
+	<div ng-if='right_end'>{{right_end}}</div>
+	<button ng-click='left_page()'>上一页</buttom>
+	<button ng-click='right_page()'>下一页</button>
+</article>

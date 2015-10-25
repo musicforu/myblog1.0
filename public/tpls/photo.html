@@ -1,0 +1,21 @@
+<div class="theme"> 
+  <h2>上传头像</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article>
+       <img ngf-src='file' class='photo'>
+       {{message}}
+	   <div class='button' ngf-select ng-model='file'>
+	   	<span class='btn btn-success'>请上传您的头像</span>
+	   </div>
+    
+</article>

@@ -1,0 +1,74 @@
+<!-- 个人主页-->
+<div class="theme"> 
+  <h2>{{mine.name}}</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article>
+	<section ng-repeat='post in posts'>
+		<header>
+			<h2>
+			  <a href='#/postId/{{post._id}}'>{{post.title}}</a>
+             <a href='#/edit/{{post._id}}' class='btn btn-xs btn-success' ng-show='edit'>
+			    编辑
+			 </a>
+			 <button class='btn btn-xs btn-success' ng-show='edit'
+			 ng-click='deletePost(post._id)'>
+			    删除
+			 </button>
+			 <img ng-src='/images/{{post.name}}.png' class="userHeader">  
+			</h2>
+			<div><i class='fa fa-bullseye'></i>发表于:
+                {{ post.created | date:'medium' }}
+			</div>
+			<div>被阅读：<i class='label label-success'>
+			{{ post.read }}</i>次                
+			</div>
+			<div>
+				<ul class='list-inline'>
+					<i class='fa fa-tags'></i>
+					<li ng-repeat='tag in post.tags track by $index'>
+					  <a class='label label-success' href='#/tag/{{tag}}'>{{tag}}</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<div>
+			<p ng-bind-html='post.content'></p>
+		</div>
+		<footer>
+			<button ng-click='likePost()' class='btn btn-xs btn-success'
+             >
+			    赞{{post.likes}}
+			</button>
+			{{messageLike}}
+			<button ng-click='unlikePost()' class="btn btn-xs btn-success"
+			 >
+                取消点赞
+			 </button>
+			  <i class='fa fa-thumbs-up'></i>
+			 {{messageUnlike}}
+			 <div ng-repeat='comment in comments'>
+			 	{{comment.name}}<img ng-src='{{comment.head}}' class='commentHeader'>于{{comment.time}}评论：<br>
+                {{comment.content}}
+			 </div>
+			 <div>
+			 	您的评论：<input type='text' ng-model='commentUser' 
+			 	disabled="disabled">
+			 	<textarea ng-model='commentContent' rows='5' 
+			 	cols="100">
+			 		
+			 	</textarea>
+			 	<button ng-click='commentPost(commentContent)'>提交</button>
+			 </div>
+		</footer>
+	</section>
+</article>

@@ -1,0 +1,16 @@
+<div class="theme"> 
+  <h2>主页</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article ng-if='isLogged'>{{isLogged}}</article>
+<article ng-if='postSuccess'>{{postSuccess}}</article>
+<article ng-if='isLogouted'>{{isLogouted}}</article>

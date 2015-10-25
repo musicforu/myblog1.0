@@ -1,0 +1,45 @@
+<!-- 系统管理员页面-->
+<article>
+	<ol class="breadcrumb">
+		<li><a href='#/'>博客</a></li>
+		<li class="active">超级用户</li>
+	</ol>
+
+	<div class="alert alert-danger" ng-show='message.is_error'>
+		{{message.message}}
+	</div>
+	<div class='alert alert-success' ng-show='message.is_success'>
+		{{message.message}}
+	</div>
+
+	<a href='#/post' class="btn btn-success">发表文章</a>
+
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>标题</th>
+				<th>阅览次数</th>
+				<th>创建时间</th>
+				<th>更改时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='post in posts track by $index'>
+				<td>{{post.title}}</td>
+				<td>{{post.read}}</td>
+				<td>{{post.created|date:'medium'}}</td>
+				<td>{{post.updated|date:'medium'}}</td>
+				<td>
+					<button ng-show='post.is_published' class="btn btn-warning btn-xs" ng-click='updatePublishState(post,false)'><span class="glyphicon glyphicon-eye-close"></span></button>
+
+					<button ng-show='!post.is_published' class="btn btn-success btn-xs" ng-click='updatePublishState(post,true)'><span class="glyphicon glyphicon-eye-open"></span></button>
+
+					<a href='#/edit/{{post._id}}' class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
+
+					<button class="btn btn-danger btn-xs" ng-click='deletePost(post._id)'><span class="glyphicon glyphicon-trash"></span></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</article>

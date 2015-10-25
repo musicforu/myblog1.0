@@ -1,0 +1,59 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: khaki;
+}
+
+a {
+  color: #00B7FF;
+}
+.theme{
+	margin:auto 160px;
+	border-bottom: 1px solid #cccccc;	
+}
+.theme h2{
+	font-family:'Microsoft YaHei';
+	font-weight: bolder;
+}
+nav{
+    position: fixed;
+    left:8em;
+    text-align: right;
+}
+nav a{
+	display: block;
+	text-decoration: none;
+	padding:.7em 1em;
+	font-size: 19px;
+}
+nav a:hover{
+    background-color: #fff000;
+    color:#f9f9f9;
+    font-size: 21px;
+    -webkit-transform:color .2s linear;
+}
+article{
+  left:12em;
+  padding:0.5em 12em;
+  overflow: hidden;
+}
+.photo{
+  width: 300px;
+  height:250px;
+}
+.userHeader{
+  width: 110px;
+  height: 120px;
+  float: right;
+  margin-right:10em;
+  margin-top: -45px;
+  box-shadow: 0px 1px 4px #888;
+}
+.commentHeader{
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-left: 5em;
+  margin-top: -5px;
+  box-shadow: 0px 1px 4px #888;
+}

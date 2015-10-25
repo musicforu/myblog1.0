@@ -1,0 +1,29 @@
+<div class="theme"> 
+  <h2>发表</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article>
+<form ng-submit='save(post,shouldPublish)'>
+  <h3 ng-if='information'><span class='label label-danger'>{{information}}</span></h3></br>
+	标题:<br>
+	<input type='text' ng-model='post.title'><br>
+    标签:<br>
+    <input type='text' ng-model='post.tags0'>
+    <input type='text' ng-model='post.tags1'>
+    <input type='text' ng-model='post.tags2'>
+    <br>
+    正文：<br>
+    <textarea ng-model='post.content' rows='20' cols='100' id='textAreaContent'></textarea>
+    <br>
+    <input type='submit' value='发表'>
+</form>
+</article> 

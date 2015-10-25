@@ -1,0 +1,35 @@
+<!-- 此作者的所有文章-->
+<div class="theme"> 
+  <h2>{{name}}</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article>
+	<section ng-repeat='post in posts'>
+		<header>
+			<h2><a href='#/postId/{{post._id}}'>{{ post.title }}</a></h2>
+			<div><i class='fa fa-bullseye'></i>{{ post.created | date:'medium'}}</div>
+			<div><i class='fa fa-thumbs-up'></i>{{ post.likes}}</div>
+			<div>
+			    <ul class='list-inline'>
+			        <i class='fa fa-tags'></i>
+				    <li ng-repeat='tag in post.tags track by $index'>
+				        <a class='label label-success' href='#/tag/{{tag}}'>{{ tag }}</a>	
+				    </li>
+			    </ul>
+			</div>
+		</header>
+		<div>
+			<p ng-bind-html='post.content'>	</p>
+			<a href='#/postName/{{post.name}}' class='btn btn-primary'>获取更多此用户文章</a>
+		</div>
+	</section>
+</article>

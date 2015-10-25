@@ -1,0 +1,45 @@
+<div class="theme"> 
+  <h2>编辑</h2>
+</div>
+<nav>
+  <span><a title='主页' href='#/'>Home</a></span>
+  <span ng-if='!isLogged'><a title='登陆' href='#/login'>Login</a></span>
+  <span ng-if='!isLogged'><a title='注册' href='#/register'>Register</a></span>
+  <span ng-if='isLogged'><a title='发表' href='#/post'>Post</a></span>
+  <span ng-if='isLogged'><a title='登出' href='#/logout'>Logout</a></span>
+  <span ng-if='isLogged'><a title='个人' href='#/mine'>Mine</a></span>
+  <span ng-if='isLogged'><a title='头像' href='#/photo'>Photo</a></span>
+  <span ng-if='isLogged'><a title="搜索" href='#/search'>Search</a></span>
+</nav> 
+<article>
+	<section>
+		<ol class='breadcrumb'>
+			<li><a href='#/'>主页</a></li>
+			<li><a href='#/admin'>超级用户</a></li>
+			<li class="active">编辑</li>
+		</ol>
+		<form name='editPostForm'>
+			<div class='form-group'>
+				<label for="inputTitle">标题</label>
+				<input type='text' class="form-controll" id="inputTitle"
+				value='{{post.title}}' ng-model='post.title'>
+			</div>
+			<div class="form-group">
+				<label for='inputTags'>标签</label>
+				<input type='text' class="form-control" id='inputTags'
+				 ng-model='post.tags[0]'>
+				<input type='text' class="form-control" id='inputTags'
+				 ng-model='post.tags[1]'>
+				<input type='text' class="form-control" id='inputTags'
+				 ng-model='post.tags[2]'>
+			</div>
+			<div class="form-group">
+				<label for='textareaContent'>内容</label>
+				<textarea class="form-control" rows='19' 
+				id='textareaContent'ng-model='post.content'></textarea>
+			</div>
+			<button type='submit' class='btn btn-success' 
+			ng-click='save(post,true)'>提交</button>
+		</form>
+	</section>
+</article>
